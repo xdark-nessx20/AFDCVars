@@ -9,18 +9,18 @@ public class Automaton {
         this.currentState = State.INI;
     }
 
-    public void verifyIdentifier(String identifier){
+    public String verifyIdentifier(String identifier){
         try{
-            if(isKeyword(identifier)) throw new Exception();
+            if(isKeyword(identifier)) throw new Exception("Invalid Identifier: \"" + identifier + "\" is a keyword");
 
             for(int i = 0; i < identifier.length(); i++){
                 char  c = identifier.charAt(i);
                 currentState = currentState.nextState(c);
-                if(currentState == State.ERROR) throw new Exception();
+                if(currentState == State.ERROR) throw new Exception("Invalid symbol detected at char: \"" + c + "\", digit " + (++i));
             }
-            System.out.printf("'%s' is a valid identifier\n", identifier);
+            return "\"" + identifier + "\" is a Valid Identifier";
         } catch (Exception e) {
-            System.out.printf("'%s' is an invalid identifier\n", identifier);
+            return e.getMessage();
         } finally {
             currentState = State.getInitialState();
         }

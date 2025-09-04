@@ -2,54 +2,52 @@ package view;
 
 import model.Automaton;
 
+import javax.swing.*;
+
 public class Program {
     public static void main(String[] args) {
         Automaton afd = new Automaton();
-
-        /*
-        static{
-            UIManager.put("OptionPane.background", Color.decode("#03045E"));
-            UIManager.put("Panel.background", Color.decode("#03045E"));
-            UIManager.put("OptionPane.messageForeground", Color.decode("#FFFFFF"));
-            UIManager.put("Button.background", Color.decode("#00B4D8"));
-            UIManager.put("Button.foreground", Color.decode("#FFFFFF"));
-        }
-         while(true){
+        Icon gifclose = new ImageIcon(Program.class.getResource("/close.gif"));
+        while(true){
             String num = JOptionPane.showInputDialog(null,
-                "Type a roman number between I and L: \nDon't write if you wanna exit", "AFD Roman Nums",
-                JOptionPane.QUESTION_MESSAGE);
+                    "Type a C Variable identifier/name: \nDon't write if you wanna exit", "AFD C Vars",
+                    JOptionPane.QUESTION_MESSAGE);
             if(num == null || num.isBlank()) break;
 
-            String afdAnswer = afd.verify(num);
+            String afdAnswer = afd.verifyIdentifier(num);
             processAnswer(afdAnswer);
         }
-        JOptionPane.showMessageDialog(null, "Closing...", "AFD Roman Nums",
-            JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Closing... Press OK", "AFD C Vars",
+                JOptionPane.PLAIN_MESSAGE, gifclose);
 
-        private static void processAnswer(String answer){
-            int messageType = (answer.contains("Valid"))? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE;
-            JOptionPane.showMessageDialog(null, answer, "AFD Roman Nums", messageType);
-        }
-
-
-        */
-
-        //Valid
-        afd.verifyIdentifier("myVar");
-        afd.verifyIdentifier("user_name");
-        afd.verifyIdentifier("_totalValue");
-        afd.verifyIdentifier("counter$");
-        afd.verifyIdentifier("$");
-        afd.verifyIdentifier("wi1pi2");
-        //Invalids
-        System.out.println();
-        //System.out.printf("Unable to open file '%1$s'", "text");
-        afd.verifyIdentifier("@price");
-        afd.verifyIdentifier("my var");
-        afd.verifyIdentifier("123var");
-        afd.verifyIdentifier("void");
-        afd.verifyIdentifier("total-value");
-        afd.verifyIdentifier("x+y");
-        afd.verifyIdentifier("*pointer");
     }
-}
+
+    private static void processAnswer(String answer){
+        // abrir el gif correcto
+        String fileName = (answer.contains("Valid")) ? "/bien.gif" : "/mal.gif";
+        Icon gif = new ImageIcon(Program.class.getResource(fileName));
+
+        JOptionPane.showMessageDialog(null, answer, "AFD Roman Nums", JOptionPane.PLAIN_MESSAGE, gif);
+    }
+
+
+
+
+//        //Valid
+//        afd.verifyIdentifier("myVar");
+//        afd.verifyIdentifier("user_name");
+//        afd.verifyIdentifier("_totalValue");
+//        afd.verifyIdentifier("counter$");
+//        afd.verifyIdentifier("$");
+//        afd.verifyIdentifier("wi1pi2");
+//        //Invalids
+//        System.out.println();
+//        //System.out.printf("Unable to open file '%1$s'", "text");
+//        afd.verifyIdentifier("@price");
+//        afd.verifyIdentifier("my var");
+//        afd.verifyIdentifier("123var");
+//        afd.verifyIdentifier("void");
+//        afd.verifyIdentifier("total-value");
+//        afd.verifyIdentifier("x+y");
+//        afd.verifyIdentifier("*pointer");
+    }
