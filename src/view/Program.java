@@ -30,7 +30,7 @@ public class Program {
         String fileName = (answer.contains("Valid")) ? "/bien.gif" : "/mal.gif";
         Icon gif = new ImageIcon(Objects.requireNonNull(Program.class.getResource(fileName)));
 
-        JOptionPane.showMessageDialog(null, answer, "AFD Roman Nums", JOptionPane.PLAIN_MESSAGE, gif);
+        JOptionPane.showMessageDialog(null, answer, "AFD C Vars", JOptionPane.PLAIN_MESSAGE, gif);
     }
 
     /*

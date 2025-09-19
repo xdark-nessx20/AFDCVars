@@ -6,10 +6,11 @@ public class Automaton {
     private State currentState;
 
     public Automaton() {
-        this.currentState = State.INI;
+        this.currentState = State.getInitialState();
     }
 
     public String verifyIdentifier(String identifier){
+        identifier = identifier.toLowerCase();
         try{
             if(isKeyword(identifier)) throw new Exception("Invalid Identifier: \"" + identifier + "\" is a keyword");
 

@@ -1,6 +1,5 @@
 package model;
 
-import static model.Language.NUMBERS;
 import static model.Language.NOT_ALLOWED_DELIMITERS;
 
 public enum State {
@@ -24,7 +23,7 @@ public enum State {
 
     public State nextState(char c) {
         return switch (this){
-            case INI -> (NUMBERS.contains(c) || NOT_ALLOWED_DELIMITERS.contains(c))? ERROR: OK;
+            case INI -> (Character.isDigit(c) || NOT_ALLOWED_DELIMITERS.contains(c))? ERROR: OK;
             case OK -> (NOT_ALLOWED_DELIMITERS.contains(c))? ERROR: OK;
             default -> ERROR;
         };
